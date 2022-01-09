@@ -151,7 +151,36 @@ public class Game {
     public String checkGameWinner(char [][]grid){
         String result = "None";
         //Student code goes here ...
+        int emptyCels = 0;
+        for (int i = 0; i<3;i++){
+            for (int j = 0; j<3;j++){
+                if (grid[i][j] == '-'){
+                    emptyCels++;
+                }
+            }
+        }
+        if (emptyCels == 0){
+            result = "Tie";
+        }
 
+        char[] players = {'x','o'};
+        int sizePlayers = players.length;
+        for (int p = 0; p < sizePlayers; p++){
+            for (int i = 0; i<3;i++) {
+                if (grid[i][0] == players[p] && grid[i][1] == players[p] && grid[i][2] == players[p]) {
+                    result = (char)(players[p] -32) + " wins";
+                }
+                if (grid[0][i] == players[p] && grid[1][i] == players[p] && grid[2][i] == players[p]) {
+                    result = (char)(players[p] -32)  + " wins";
+                }
+            }
+            if (grid[0][0] == players[p] && grid[1][1] == players[p] && grid[2][2] == players[p]) {
+                result = (char)(players[p] -32)  + " wins";
+            }
+            if (grid[0][2] == players[p] && grid[1][1] == players[p] && grid[2][0] == players[p]) {
+                result = (char)(players[p] -32)  + " wins";
+            }
+        }
 
         return result;
     }
